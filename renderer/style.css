@@ -1,3 +1,4 @@
+/*#region Main*/
 body {
   height: 100%;
   min-width: 100%;
@@ -19,6 +20,7 @@ html {
   height: 100%;
   width: 100%;
 }
+
 #Main {
   position: relative;
   display: flex;
@@ -28,14 +30,41 @@ html {
   transition: filter 300ms;
   margin: 1rem;
   height: 100%;
-  min-width: 100vw;
+  width: 100%;
 }
-.Blur {
-  filter: blur(3px);
+.ToggleVisible {
+  /* Using important to override the MyProjects inline style */
+  display: none !important; 
+
+
 }
-.Instructions {
-  text-align: center;
+.UserSelectNone {
   user-select: none;
+  pointer-events: none;
+}
+.InitiallyHidden {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  margin: 4px; /* Space between scrollbar and content */
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.scrollable-container {
+  scroll-margin-left: 4px; /* Adds space on the right side when scrolling */
+}
+/*#endregion*/
+/*#region Currency*/
+.Currency {
+  margin: 5px;
+}
+#CurrencyDiv {
+  display: flex;
 }
 .CurrencyGroup {
   display: flex;
@@ -48,12 +77,11 @@ html {
 #EssenceTabItemSpot {
   margin: 5px;
 }
-
-.AddBorder {
-  text-align: center;
-}
 #InputDiv {
   user-select: none;
+}
+.AddBorder {
+  text-align: center;
 }
 .CoordsLabel {
   display: flex;
@@ -64,17 +92,25 @@ html {
   -webkit-user-drag: none;
   user-select: none;
 }
+/*#endregion*/
+/*#region Containers*/
 #Container,
 #ExclusionContainer {
   flex-direction: column;
   align-items: center;
   user-select: none;
 }
-#SpecialEssenceDiv {
+#ManualContainer {
   display: flex;
-  flex-direction: column;
-  align-items: end;
+  flex-direction: row;
 }
+#AutoContainer {
+  display: flex;
+  flex-direction: row;
+}
+/*#endregion*/
+/*#region Images*/
+
 .Image {
   height: 40px;
   width: 40px;
@@ -101,6 +137,16 @@ html {
   margin-bottom: 5px;
   user-select: none;
 }
+#Gallery {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 5px;
+}
+.GalleryImage {
+  opacity: 0.35;
+}
+/*#endregion*/
+/*#region BorderAnimation*/
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -141,7 +187,8 @@ html {
     border-left-color: rgb(213, 9, 80);
   }
 }
-
+  /*#endregion*/
+/*#region HoverEffects*/
 .Hover {
   border: 3px double;
   border-color: rgb(213, 9, 80);
@@ -158,6 +205,17 @@ html {
 .HoverTooltipScale {
   opacity: 1;
 }
+  /*#endregion*/
+/*#region EssenceContainer*/
+.HiddenEssence {
+  display: none;
+}
+  #SpecialEssenceDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
 #EssenceContainer {
   padding: 1em;
   display: flex;
@@ -176,18 +234,8 @@ html {
   display: flex;
   flex-direction: row;
 }
-#Insertion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 10px;
-  width: 300px;
-  height: 50px;
-}
-.Currency {
-  margin: 5px;
-}
+/*#endregion*/
+/*#region InputAnimations*/
 .Input {
   background-color: rgb(40, 40, 40);
   color: aliceblue;
@@ -210,9 +258,8 @@ html {
 #ExcludeModInput:hover {
   outline: solid 2px #840a0a;
 }
-#CurrencyDiv {
-  display: flex;
-}
+/*#endregion*/
+/*#region Instructions*/
 #HideInstructions {
   flex-direction: column;
   position: absolute;
@@ -220,25 +267,16 @@ html {
   right: 1%;
   user-select: none;
 }
-.HiddenEssence {
-  display: none;
+.Instructions {
+  text-align: center;
+  user-select: none;
 }
 .HideInstructions {
   display: flex;
   align-items: center;
 }
-.XYLabel {
-  opacity: 0.2;
-}
-#ManualContainer {
-  display: flex;
-  flex-direction: row;
-}
-#AutoContainer {
-  display: flex;
-  flex-direction: row;
-}
-
+/*#endregion*/
+/*#region Buttons*/
 .button {
   user-select: none;
   margin: 0.5rem;
@@ -254,12 +292,26 @@ html {
   transform: scale(1.05);
 }
 
+/*#endregion*/
+
+/*#endregion*/
 #Start {
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+.XYLabel {
+  opacity: 0.2;
+}
+#Insertion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+}
 .CheckBox {
   filter: brightness(40%);
   accent-color: rgb(0, 0, 0);
@@ -267,14 +319,7 @@ html {
 .SelectNone {
   user-select: none;
 }
-#Gallery {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 5px;
-}
-.GalleryImage {
-  opacity: 0.35;
-}
+
 #SaveCraftIconSelector {
   position: absolute;
   top: 5rem;
@@ -283,8 +328,7 @@ html {
 .Hidden {
   display: none;
 }
-#SavedCrafts {
-  /* display: flex; */
+#MyProjects {
   user-select: none;
   position: absolute;
   bottom: 1em;
@@ -341,25 +385,8 @@ html {
   transition: box-shadow 3s ease-in-out;
   overflow: auto;
 }
-.UserSelectNone {
-  user-select: none;
-  pointer-events: none;
-}
-.InitiallyHidden {
-  display: none;
-}
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  margin: 4px; /* Space between scrollbar and content */
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-.scrollable-container {
-  scroll-margin-left: 4px; /* Adds space on the right side when scrolling */
+.Blur {
+  filter: blur(3px);
 }
 #LagInput {
   width: 2.3rem;

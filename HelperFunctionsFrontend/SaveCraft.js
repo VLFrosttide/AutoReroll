@@ -16,9 +16,9 @@ import {
   GetSavedItem,
   CreateLocalStorageSave,
 } from "./LocalStorageFn.js";
+import { DisplayItemMods } from "./DisplayItemMods.js";
 let SaveGallery = document.getElementById("Gallery");
 let GalleryImageArray = document.getElementsByClassName("GalleryImage");
-let HoverTooltip = document.getElementsByClassName("HoverTooltip");
 
 //#region Save item
 SaveCraftButton.addEventListener("click", function () {
@@ -132,10 +132,10 @@ SaveCraftButton.addEventListener("click", function () {
                     SaveName,
                     ["Saved", "Image"],
                     "",
-                    SavedCrafts
+                    MyProjects
                   );
                   NewSave.src = `${SaveIcon.src}`;
-                  SavedCrafts.appendChild(NewSave);
+                  MyProjects.appendChild(NewSave);
                   SaveCraftContainer.remove();
                 } else {
                   RemoveBlur();
@@ -174,85 +174,9 @@ SaveCraftButton.addEventListener("click", function () {
 });
 //#endregion
 
-//#region Load saved item
-SavedCrafts.addEventListener("click", (e) => {
-  if (e.target.classList.contains("Image")) {
-    let Name = e.target.id; // Example:  ShaperWand
-    GetSavedItem("Save", Name)
-      .then((result) => {
-        let Pmods = JSON.parse(result[0]);
-        let Nmods = JSON.parse(result[1]);
-        RemoveElementByClass("ModName");
-        RemoveElementByClass("ExclusionMod");
-        for (let i = 0; i < Pmods.length; i++) {
-          CreateElementFn(
-            "label",
-            "",
-            ["ModName", "Mod"],
-            Pmods[i],
-            Container,
-            "rgb(112, 255, 112)"
-          );
-        }
-        for (let i = 0; i < Nmods.length; i++) {
-          CreateElementFn(
-            "label",
-            "",
-            ["ExclusionMod", "Mod"],
-            Nmods[i],
-            ExclusionContainer,
-            "rgb(255, 62, 28)"
-          );
-        }
 
-        DisplayInsertionMsg("Saved item loaded successfully!", "green");
-      })
-      .catch((error) => {
-        DisplayInsertionMsg(`Error loading item: ${error}`, "red");
 
-        console.error(error);
-      });
-  }
-});
-//#endregion
-//#region Delete Saved Items
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Delete") {
-    let SelectedItem = document.getElementsByClassName("Delete")[0];
-    if (SelectedItem) {
-      DeleteSavedItem(SelectedItem, DeleteLSSaveItem);
-      DisplayInsertionMsg("Saved item deleted!", "green");
-    }
-  }
-});
-
-//#endregion
-//#region Display labels and Delete class functionality
-SavedCrafts.addEventListener("mouseover", (e) => {
-  if (e.target.classList.contains("Saved")) {
-    e.target.classList.add("Delete");
-  }
-  if (e.target.classList.contains("Image")) {
-    RemoveElementByClass("HoverTooltip");
-    CreateElementFn("div", "", ["HoverTooltip"], `${e.target.id}`, Insertion);
-  }
-});
-SavedCrafts.addEventListener("mouseout", (e) => {
-  if (e.target.classList.contains("Delete")) {
-    e.target.classList.remove("Delete");
-  }
-  if (e.target.classList.contains("Image")) {
-    e.target.style.width = "40px";
-    e.target.style.height = "40px";
-    RemoveElementByClass("HoverTooltip");
-
-    for (let i = HoverTooltip.length - 1; i >= 0; i--) {
-      HoverTooltip[i].remove();
-    }
-  }
-});
-//#endregion
 //#region Display Icons
 window.api.SaveIconsData((event, data) => {
   let IconFolderPath = data[0];

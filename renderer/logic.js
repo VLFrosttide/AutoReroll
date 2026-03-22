@@ -1,5 +1,6 @@
 "use strict";
 
+//#region Imports
 import {
   CreateElementFn,
   DisplayInsertionMsg,
@@ -16,15 +17,17 @@ import { StartCrafting } from "../HelperFunctionsFrontend/StartButton.js";
 import "../HelperFunctionsFrontend/ImportItems.js";
 import "../HelperFunctionsFrontend/ExportItem.js";
 import "../HelperFunctionsFrontend/SaveCraft.js";
+import "../HelperFunctionsFrontend/MyProjects.js";
+//#endregion
 //#region Declarations
-const Main = document.getElementById("Main");
+const MainPage = document.getElementById("Main");
 const ModNameInput = document.getElementById("ModInput");
 const ExcludeModInput = document.getElementById("ExcludeModInput");
 const Container = document.getElementById("Container");
 const ExclusionContainer = document.getElementById("ExclusionContainer");
 const CurrencyDiv = document.getElementById("CurrencyDiv");
 const StartButton = document.getElementById("StartButton");
-const SavedCrafts = document.getElementById("SavedCrafts");
+const MyProjects = document.getElementById("MyProjects");
 let Counter;
 const ImageContainer = document.getElementById("ImageContainer");
 const ManualContainer = document.getElementById("ManualContainer");
@@ -83,7 +86,6 @@ if (localStorage.length > 0) {
   LoadInitialState();
   (async function () {
     let SavedItems = GetLSSaves("Save");
-    console.log("SavedItems: ", SavedItems);
     IconFolderPath = new Promise((resolve) => {
       window.api.GetIconPath((event, data) => {
         resolve(data);
@@ -91,28 +93,26 @@ if (localStorage.length > 0) {
     });
     if (Object.keys(SavedItems).length > 0) {
       try {
-        console.log("All Items: ", Object.keys(SavedItems));
+        
         for (const key of Object.keys(SavedItems)) {
-          console.log("Keys: ", key);
+          
           let IconName = localStorage.getItem(key);
           IconName = IconName.replace("SaveIconName", "");
           IconName = IconName.split("PositiveMods").shift();
-          console.log("IconName: ", IconName);
+        
 
-          console.log("IconFolderPath: ", IconFolderPath);
+          
           let IconPath = await IconFolderPath;
 
-          console.log("IconPath: ", IconPath);
           let NewEl = CreateElementFn(
             "img",
             `${key}`,
             ["Image", "Saved"],
             "",
-            SavedCrafts
+            MyProjects
           );
           NewEl.src = `${IconPath}/${IconName}`;
-          console.log("NewElSource: ", `${IconPath}/${IconName}`);
-          console.log("NewEl: ", NewEl);
+      
         }
       } catch (error) {
         console.error("Error loading saved items: ", error);
@@ -200,12 +200,12 @@ document.addEventListener("mouseout", (e) => {
 });
 
 ModNameInput.addEventListener("keydown", (e) => {
-  if (e.key == "Enter") {
+  if (e.key == "Enter"&& ModNameInput.value.trim() !== "") {
     CreateElementFn(
       "div",
       "",
       ["ModName", "Mod"],
-      ModNameInput.value,
+      ModNameInput.value.trim(),
       Container,
       "rgb(112, 255, 112)" // green
     );
@@ -231,7 +231,7 @@ ExcludeModInput.addEventListener("keydown", (e) => {
 //#region Start Button Eventlistener
 StartButton.addEventListener("click", function () {
   DisplayInsertionMsg("Crafting started!", "green");
-  console.log("Craftmaterial: ", CraftMaterial);
+  
   StartCrafting(CraftMaterial);
 });
 //#endregion
@@ -277,7 +277,7 @@ LagCheckBox.addEventListener("change", function () {
 
 EssenceContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("Essence")) {
-    Main.style.position = "";
+    MainPage.style.position = "";
     let SelectedEssence = document.getElementById(`${e.target.id}`);
     XYLabel = document.getElementById(`${SelectedEssence.id}` + "Label");
     let HoverHighlight = e.target.classList.contains("Hover", "Highlight");
@@ -458,6 +458,7 @@ window.addEventListener("keydown", function (e) {
 });
 
 //#endregion
+
 
 //#region Mouse position API
 window.api.MousePos((event, data) => {

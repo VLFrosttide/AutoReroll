@@ -2,7 +2,7 @@
  * Creates a new element, sets its properties, and inserts it into the specified parent element.
  * @param {string}Type - The type of the element to create (e.g., 'div', 'label', 'span').
  * @param {string}[ID] - Optional The ID attribute of the new element.
- * @param {Array}Class - The class attributes of the new element.
+ * @param {Array}Class - The class attributes of the new element ["ModName","Mod"].
  * @param {string}Text - The text content of the new element.
  * @param {HTMLElement}Parent - The parent element where the new element will be inserted.
  * @param {string}TextColor - Optional text color
@@ -13,7 +13,7 @@ export function CreateElementFn(
   Class = [""],
   Text,
   Parent,
-  TextColor = "aliceblue"
+  TextColor = ""
 ) {
   let NewElement = document.createElement(Type);
   if (ID) {

@@ -60,7 +60,6 @@ export function StartCrafting(CraftMaterial) {
       InfoArray.push(ExclusionModArray); //6
       InfoArray.push(Number(LagInputNumber)); //7
       InfoArray.push(Number(ModNumber.value)); //8 - Minimum number of mods to look for
-      console.log("InfoArray: ", InfoArray);
       window.api.StartCrafting(InfoArray);
     } else {
       RemoveElementByClass("HoverTooltip");
