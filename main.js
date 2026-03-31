@@ -36,14 +36,10 @@ nativeTheme.themeSource = "dark";
 //#endregion
 //
 //
-//
 let LocalDev = process.env.NODE_ENV;
 //#region AutoUpdater
 autoUpdater.checkForUpdatesAndNotify();
 //#endregion
-//
-//
-//
 //
 //
 export let DocPath;
