@@ -12,7 +12,27 @@
       "repo": "AutoReroll"
     },
     "asarUnpack": "renderer/SaveIconPics",
-    "appId": "AutoReroll",
+    "appId": "AutoReroll",  
+    "extraFiles": [
+      {"from": "AlchScour.py",
+       "to": "AlchScour.py"},
+      {
+        "from": "python/Reroll.py",
+        "to": "python/Reroll.py"
+      },
+      {
+        "from": "python/HarvestReroll.py",
+        "to": "python/HarvestReroll.py"
+      },
+      {
+        "from": "python/UseCurrency.py",
+        "to": "python/UseCurrency.py"
+      },
+      {
+        "from": "python/LiftKeys.py",
+        "to": "python/LiftKeys.py"
+      }
+    ],
     "win": {
       "target": "nsis",
       "electronLanguages": [
