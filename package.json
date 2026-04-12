@@ -16,11 +16,11 @@
     "asarUnpack": "renderer/SaveIconPics",
     "appId": "AutoReroll",  
     "extraFiles": [
-      {"from": "MapsRoll.py",
-       "to": "MapsRoll.py"
+      {"from": "python/MapsRoll.py",
+       "to": "python/MapsRoll.py"
       },
-      {"from": "AlchScour.py",
-       "to": "AlchScour.py"
+      {"from": "python/AlchScour.py",
+       "to": "python/AlchScour.py"
       },
       {
         "from": "python/Reroll.py",
