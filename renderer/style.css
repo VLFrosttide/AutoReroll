@@ -122,7 +122,7 @@ html {
 }
 .Currency{
   display: flex;
-  align-items: flex-start ;
+  /* align-items: flex-start ; */
 }
 /*#endregion*/
 /*#region Images*/

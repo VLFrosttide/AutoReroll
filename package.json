@@ -1,6 +1,6 @@
 {
   "name": "AutoReroll",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Automatically rerolls items",
   "main": "main.js",
   "type": "module",
@@ -16,12 +16,7 @@
     "asarUnpack": "renderer/SaveIconPics",
     "appId": "AutoReroll",  
     "extraFiles": [
-      {"from": "python/MapsRoll.py",
-       "to": "python/MapsRoll.py"
-      },
-      {"from": "python/AlchScour.py",
-       "to": "python/AlchScour.py"
-      },
+ 
       {
         "from": "python/Reroll.py",
         "to": "python/Reroll.py"
@@ -41,6 +36,12 @@
          {
         "from": "Sounds/Sound1.wav",
         "to": "Sounds/Sound1.wav"
+      } ,
+         {"from": "python/MapsRoll.py",
+       "to": "python/MapsRoll.py"
+      },
+      {"from": "python/AlchScour.py",
+       "to": "python/AlchScour.py"
       }
     ],
     "win": {

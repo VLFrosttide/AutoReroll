@@ -241,7 +241,6 @@ window.api.GlobalKey((event, data) => {
 //#endregion
 //#region  StepUp/Down event listeners
 MaxRerolls.addEventListener("wheel", function (e) {});
-
 LagInput.addEventListener("wheel", function (e) {});
 ModNumber.addEventListener("wheel", function (e) {});
 //#endregion

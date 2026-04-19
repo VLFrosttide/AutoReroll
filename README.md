@@ -1,4 +1,4 @@
-[Download and install the exe](https://github.com/VLPoeBots/Reroll-Items/releases/latest) (~84MB, ~266MB after installation).
+[Download and install the exe](https://github.com/VLPoeBots/Reroll-Items/releases/latest) (~90MB, ~300MB after installation).
 
 For setup instructions:
 
